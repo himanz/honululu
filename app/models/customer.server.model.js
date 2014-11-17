@@ -15,7 +15,7 @@ var CustomerSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	surnameName: {
+	surname: {
 		type: String,
 		default: '',
 		trim: true
@@ -47,8 +47,6 @@ var CustomerSchema = new Schema({
 	},
 	referred: {
 		type: Boolean,
-		default: '',
-		trim: true
 	},
 	channel: {
 		type: String,

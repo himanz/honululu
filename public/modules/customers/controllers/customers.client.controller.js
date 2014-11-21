@@ -12,24 +12,26 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 		this.customers = Customers.query();
 
     // Open a modal window to Update a single customer record
-    $scope.open = function (size) {
+    this.modalUpdate = function (size, selectedCustomer) {
 
-    var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-	    }, function () {
-	      $log.info('Modal dismissed at: ' + new Date());
+	    var modalInstance = $modal.open({
+	      templateUrl: 'modules/customers/views/edit-customer.client.view.html',
+	      controller: function ($scope, $modalInstance, customer ){
+	      	$scope.customer = customer;
+	      }, 
+	      size: size,
+	      resolve: {
+	        customer: function () {
+	          return selectedCustomer;
+	        }
+	      }
 	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
 	  };
 
 	}

@@ -42,7 +42,7 @@ customersApp.controller('CustomersCreateController', ['$scope', 'Customers',
 	}
 ]);
 
-customersApp.controller('CustomersEditController', ['$scope', 'Customers',
+customersApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 	function($scope, Customers) {
 	}
 ]);

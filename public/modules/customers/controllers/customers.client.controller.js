@@ -20,7 +20,10 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 	      	$scope.customer = customer;
 
 	      	$scope.ok = function () {
-				    $modalInstance.close($scope.customer);
+
+	      		if (updateCustomerForm.$valid) {
+				      $modalInstance.close($scope.customer);
+				    }
 				  };
 
 				  $scope.cancel = function () {
@@ -58,7 +61,7 @@ customersApp.controller('CustomersUpdateController', ['$scope', 'Customers',
 			var customer = updatedCustomer;
 
 			customer.$update(function() {
-			
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

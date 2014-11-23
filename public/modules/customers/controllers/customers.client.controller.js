@@ -21,9 +21,9 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 	      	$scope.ok = function () {
 
-	      		if (createCustomerForm.$valid) {
+	      		// if (createCustomerForm.$valid) {
 				      $modalInstance.close();
-				    }
+				    // }
 				  };
 
 				  $scope.cancel = function () {
@@ -50,9 +50,9 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 
 	      	$scope.ok = function () {
 
-	      		if (updateCustomerForm.$valid) {
+	      		// if (updateCustomerForm.$valid) {
 				      $modalInstance.close($scope.customer);
-				    }
+				    // }
 				  };
 
 				  $scope.cancel = function () {
@@ -71,8 +71,24 @@ customersApp.controller('CustomersController', ['$scope', '$stateParams', 'Authe
 	      $scope.selected = selectedItem;
 		    }, function () {
 		      $log.info('Modal dismissed at: ' + new Date());
-		    });
+		  });
 	  };
+
+	  // Remove existing Customer
+		this.remove = function(customer) {
+			if ( customer ) { 
+				customer.$remove();
+
+				for (var i in this.customers) {
+					if (this.customers [i] === customer) {
+						this.customers.splice(i, 1);
+					}
+				}
+			} else {
+				this.customer.$remove(function() {
+				});
+			}
+		};
 
 	}
 ]);
@@ -164,11 +180,4 @@ customersApp.directive('customerList', [function() {
 		// 	}
 		// };
 
-		
-
-		// // Find existing Customer
-		// $scope.findOne = function() {
-		// 	$scope.customer = Customers.get({ 
-		// 		customerId: $stateParams.customerId
-		// 	});
-		// };
+	

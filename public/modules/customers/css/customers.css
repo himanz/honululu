@@ -14,3 +14,8 @@
 .text-pink {
 	color: #ec407a;
 }
+
+.extra-space {
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
